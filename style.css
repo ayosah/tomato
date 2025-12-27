@@ -1,0 +1,110 @@
+body {
+    background-color: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 60px;
+}
+
+.btn {
+    padding: 15px;
+    background: #ff7675;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 5px #d63031;
+    transition: 0.1s;
+}
+
+.btn:active {
+    box-shadow: 0 0 #d63031;
+    transform: translateY(5px);
+}
+
+/* Base Tomato */
+.tomato-wrapper { position: relative; width: 260px; transition: all 0.3s; }
+
+.tomato {
+    width: 220px; height: 190px; background: #f44336;
+    border-radius: 50%; position: relative; margin: auto; z-index: 2;
+}
+
+.leaf {
+    position: absolute; top: -25px; left: 45px; width: 130px; height: 40px;
+    background: #4caf50; border-radius: 50%; z-index: 3;
+}
+
+.leaf::after {
+    content: ""; position: absolute; top: -20px; left: 55px;
+    width: 20px; height: 40px; background: #4caf50; border-radius: 10px;
+}
+
+.face { position: absolute; top: 70px; width: 100%; text-align: center; }
+
+.eye {
+    width: 25px; height: 12px; border-bottom: 4px solid #222;
+    border-radius: 50%; display: inline-block; margin: 0 12px;
+    transition: all 0.2s;
+}
+
+.mouth {
+    width: 30px; height: 12px; background: #222;
+    border-radius: 0 0 20px 20px; margin: 10px auto 0;
+}
+
+.arm {
+    position: absolute; width: 70px; height: 8px; background: #222;
+    top: 90px; border-radius: 10px; z-index: 1; transition: all 0.3s;
+}
+
+.arm.left { left: -30px; transform: rotate(-45deg); }
+.arm.right { right: -30px; transform: rotate(45deg); }
+
+.legs { display: flex; justify-content: center; margin-top: -5px; }
+.leg { width: 8px; height: 40px; background: #222; margin: 0 15px; border-radius: 10px; }
+
+/* --- ACTION STATES --- */
+
+/* Talking (Mouth Move) */
+.talking .mouth { animation: mouthTalk 0.12s infinite alternate; }
+@keyframes mouthTalk { from { height: 10px; } to { height: 28px; } }
+
+/* HUG: Arms reach forward */
+.hug .arm.left { transform: rotate(10deg) translateX(30px); }
+.hug .arm.right { transform: rotate(-10deg) translateX(-30px); }
+
+/* KISSES: Circle mouth and bounce */
+.kisses .mouth { width: 15px; height: 15px; border-radius: 50%; }
+.kisses .tomato { animation: kissBounce 0.4s infinite; }
+@keyframes kissBounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+/* CRYING: Sad eyes and shaking */
+.crying .eye { border-bottom: none; border-top: 4px solid #222; }
+.crying .tomato { animation: sob 0.1s infinite; }
+@keyframes sob { 0% { transform: translate(1px, 1px); } 100% { transform: translate(-1px, -1px); } }
+
+/* WINKING: Right eye closes */
+.winking .eye.right { height: 1px; border-radius: 0; border-bottom: 4px solid #222; }
+
+/* WAVE: Left arm moves */
+.wave .arm.left { 
+    transform-origin: right center; 
+    animation: waveAction 0.3s infinite alternate; 
+}
+@keyframes waveAction { from { transform: rotate(-45deg); } to { transform: rotate(-110deg); } }
+
+/* PRAY: Arms together in center */
+.pray .arm.left { transform: rotate(20deg) translateX(55px); z-index: 5; }
+.pray .arm.right { transform: rotate(-20deg) translateX(-55px); z-index: 5; }

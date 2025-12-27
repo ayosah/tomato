@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomato</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="controls">
+        <button class="btn" onclick="playTomato('hug.m4a', 'hug')">Hugs</button>
+        <button class="btn" onclick="playTomato('kisses.m4a', 'kisses')">Kisses</button>
+        <button class="btn" onclick="playTomato('sorry.m4a', 'crying')">Sorry</button>
+        <button class="btn" onclick="playTomato('heart.m4a', 'winking')">Heart</button>
+        <button class="btn" onclick="playTomato('hello.m4a', 'wave')">Hello</button>
+        <button class="btn" onclick="playTomato('letter.m4a', 'pray')">Letter</button>
+    </div>
+
+    <div class="tomato-wrapper" id="tomatoCharacter">
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+
+        <div class="tomato">
+            <div class="leaf"></div>
+            <div class="shine"></div>
+
+            <div class="face">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+
+        <div class="legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+        </div>
+    </div>
+
+    <audio id="tomatoAudio"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
